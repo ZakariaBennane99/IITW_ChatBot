@@ -193,6 +193,10 @@ body {
 .chat-log .user-message .user-inner-message {
   padding: 13px;
   background-color: #296a6f;
+  width: fit-content;
+  max-width: 63%;
+  display: flex;
+  justify-content: end;
   color: white;
   border-radius: 8px;
 }
