@@ -1,5 +1,6 @@
 .toggle-chat-button {
   position: fixed;
+  -webkit-transition: all .2s;
   transition: all .2s;
   bottom: 20px;
   right: 20px;
@@ -128,6 +129,7 @@ body {
   justify-content: center;
   padding: 6.5px;
   transition: all .2s;
+  -webkit-transition: all .2s;
   border-radius: 5px;
 }
 
@@ -145,6 +147,7 @@ body {
     margin-right: 10px;
     font-size: 16px;
     transition: all .1s;
+    -webkit-transition: all .2s;
 }
 
 .chat-input:focus {
@@ -153,14 +156,15 @@ body {
   
 .chat-send-button {
   position: relative;
-    padding: 10px 20px;
-    border: none;
-    background-color: #296a6f;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all .2s;
+  padding: 10px 20px;
+  border: none;
+  background-color: #296a6f;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
 .chat-send-button:hover {
@@ -193,11 +197,12 @@ body {
   border-radius: 8px;
 }
 
-a {
-  all: unset;
+a {    
+  transition: color .2s; 
   color: #7E46E1;
   text-decoration: underline;
   cursor: pointer;
+  -webkit-transition: all .2s;
   transition: all .2s;
 }
 
@@ -232,6 +237,10 @@ a:hover, a:focus {
 .chat-log .bot-message .img-container img, 
 .typing-indicator-container .img-container img {
   width: 23px;
+}
+
+.bot-inner-message div p, .user-inner-message div p {
+  margin: 0px;
 }
 
 .chat-log .bot-message .img-container,

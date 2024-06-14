@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
+import { marked } from 'marked';
 import './index.css';
 
 const client = new W3CWebSocket('https://l93oj662ud.execute-api.us-west-2.amazonaws.com/production');
@@ -41,6 +42,7 @@ function App() {
   };
 
   useEffect(() => {
+    console.log(chatHistory)
     client.onopen = () => {
       console.log('WebSocket connection opened');
       resetInactivityTimeout();
@@ -48,6 +50,7 @@ function App() {
 
     client.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log('THE DATA: ', data)
       setIsLoading(false)
       setChatHistory(prevHistory => [...prevHistory, { sender: 'bot', message: data.response.text, sources: data.response.srcs }]);
       resetInactivityTimeout();
@@ -140,17 +143,17 @@ function App() {
                   )}
                   <div className={chat.sender === 'bot' ? 'bot-inner-message' : 'user-inner-message'}>
                     {chat.sender === 'bot' ? (
-                      <div dangerouslySetInnerHTML={{ __html: chat.message }} />
+                      <div dangerouslySetInnerHTML={{ __html: marked(chat.message) }} />
                     ) : (
                       <div>{chat.message}</div>
                     )}
-                    {chat.sender === 'bot' && chat.sources && (
+                    {chat.sender === 'bot' && chat.sources && chat.sources !== 'none' && (
                       <div className="notes-container">
-                        <span>Notes:</span> <br />
+                        <span>Sources:</span> <br />
                         <ol className="notes-list">
                           {chat.sources.map((source, index) => (
                             <li key={index} className="notes-item">
-                              <b>{index + 1}.</b> <a href={source} target="_blank" rel="noopener noreferrer">
+                            <b>{index + 1}.</b> <a href={source} target="_blank" rel="noopener noreferrer">
                                 {source}
                               </a>
                             </li>
