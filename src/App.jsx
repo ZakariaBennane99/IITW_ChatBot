@@ -120,6 +120,7 @@ function App() {
       {
         !isChatVisible ? 
           <button className="toggle-chat-button" onClick={toggleChatVisibility}>
+            <div className="label">Chat with the entire website!</div>
             <img src="/IITW_BOT_LOGO.svg" alt="Chat Icon" />
           </button> : (
         <div className="chat-container">
