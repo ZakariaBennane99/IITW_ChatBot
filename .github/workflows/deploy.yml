@@ -7,6 +7,8 @@ on:
 
 jobs:
   deploy:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
@@ -19,13 +21,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18 # Use Node.js version 18 (adjust if needed)
-     
+
       # Step 3: Install dependencies and build the app
       - name: Install dependencies
         run: npm install
 
       - name: Build the app
         run: npm run build
+
+      # Debugging Step (Optional)
+      - name: Check Deploy Context
+        run: |
+          echo "Repository URL: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Output Directory: ./dist"
 
       # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
